@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .red{
+        color:red 
+    }
+    .green{
+        color:green
+    }
+    .blue{
+        color:blue
+    }
+    .True{
+        font-size: 50px
+    }
+    .False{
+        font-size: 12px
+    }
+</style>
+<body>
+    <h1>Add a new word</h1>
+
+    <form action="/add_word" method = 'post'>
+        {% csrf_token %}
+        <input type="text" name='word'><br>
+        <input type="radio" name='color' value ='red'>red <br>    
+        <input type="radio" name='color' value ='green' >green <br>
+        <input type="radio" name='color' value ='blue' >blue <br>
+        <input type="checkbox" name='big'> Check for big the cat <br><br>
+        <input type="submit" value='yikes good luck'><br><br>
+    </form>
+
+    {% for word in request.session.words reversed %}
+        
+        <p class ='{{word.color}} {{word.big}}'>{{word.word}} {{word.date}}</p>
+
+        
+    {% endfor %}
+
+
+    
+</body>
+</html>
